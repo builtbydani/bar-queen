@@ -1,7 +1,11 @@
+import { SIZE } from '../core/constants.js';
 import { drawSprite } from '../render/sprites.js';
 
 export default class Drink{
-  constructor(lane, speedBoost=0, barX){ this.lane=lane; this.w=20; this.h=20; this.x=barX; this.baseSpeed=7.0; this.speedBoost=speedBoost; }
+  constructor(lane, speedBoost=0, barX){
+    this.lane=lane; this.w=SIZE.DRINK; this.h=SIZE.DRINK; this.x=barX;
+    this.baseSpeed=7.0; this.speedBoost=speedBoost;
+  }
   y(s){ return s.lanesY[this.lane] - this.h/2; }
   update(dt){ this.x += (this.baseSpeed + this.speedBoost) * dt; }
   draw(ctx,s){

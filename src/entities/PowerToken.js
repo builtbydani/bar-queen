@@ -1,14 +1,14 @@
+import { SIZE } from '../core/constants.js';
 import { drawSprite } from '../render/sprites.js';
 
 export default class PowerToken{
-  constructor(lane, startX){ this.lane=lane; this.x=startX; this.w=18; this.h=18; this.speed=5.5; this.kind = ['speed','charm','auto'][Math.floor(Math.random()*3)]; }
+  constructor(lane, startX){ this.lane=lane; this.x=startX; this.w=SIZE.TOKEN; this.h=SIZE.TOKEN; this.speed=5.5; this.kind=['speed','charm','auto'][Math.floor(Math.random()*3)]; }
   y(s){ return s.lanesY[this.lane] - this.h/2 - 24; }
   update(dt){ this.x -= this.speed * dt; }
   draw(ctx,s){
     const key = `power_${this.kind}`;
     const ok = drawSprite(ctx, s.sprites?.[key], this.x, this.y(s), this.w, this.h);
     if (!ok){
-      // fallback
       ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--pow') || '#a78bfa';
       ctx.fillRect(this.x, this.y(s), this.w, this.h);
       ctx.fillStyle = '#000'; ctx.font='10px monospace'; ctx.textAlign='center'; ctx.textBaseline='middle';

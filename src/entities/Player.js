@@ -1,8 +1,8 @@
-import { BAR_X } from '../core/constants.js';
+import { BAR_X, SIZE } from '../core/constants.js';
 import { drawSprite } from '../render/sprites.js';
 
 export default class Player{
-  constructor(){ this.lane=0; this.w=36; this.h=36; this.x = BAR_X - this.w; }
+  constructor(){ this.lane=0; this.w=SIZE.PLAYER; this.h=SIZE.PLAYER; this.x = BAR_X - this.w; }
   y(s){ return s.lanesY[this.lane] - this.h/2; }
   draw(ctx,s){
     const ok = drawSprite(ctx, s.sprites?.player, this.x, this.y(s), this.w, this.h);

@@ -1,7 +1,8 @@
+import { SIZE } from '../core/constants.js';
 import { drawSprite } from '../render/sprites.js';
 
 export default class EmptyGlass{
-  constructor(lane, startX){ this.lane=lane; this.w=18; this.h=18; this.x=startX; this.speed=6.0; }
+  constructor(lane, startX){ this.lane=lane; this.w=SIZE.EMPTY; this.h=SIZE.EMPTY; this.x=startX; this.speed=6.0; }
   y(s){ return s.lanesY[this.lane] - this.h/2; }
   update(dt){ this.x -= this.speed * dt; }
   draw(ctx,s){

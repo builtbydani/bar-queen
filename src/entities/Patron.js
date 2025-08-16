@@ -1,9 +1,11 @@
+import { SIZE } from '../core/constants.js';
 import { drawSprite } from '../render/sprites.js';
 
 export default class Patron{
   constructor(lane, speed, canvasW, isVIP=false, drinksNeeded=1){
     this.type = isVIP ? 'VIP' : 'REG';
-    this.lane = lane; this.w=42; this.h=42;
+    this.lane = lane;
+    this.w = SIZE.PATRON; this.h = SIZE.PATRON;
     this.x = canvasW - 70;
     this.dir = +1;
     this.baseSpeed = speed; this.speed = speed;
@@ -13,10 +15,7 @@ export default class Patron{
   }
   frontX(){ return this.x; }
   y(s){ return s.lanesY[this.lane] - this.h/2; }
-  update(dt, slowMult=1){
-    if (this.dir===+1) this.x -= this.speed * slowMult * dt;
-    else               this.x += (this.speed + 0.4) * dt; // walk back
-  }
+  update(dt, slowMult=1){ this.x += (this.dir===+1 ? -this.speed*slowMult : (this.speed+0.4)) * dt; }
   draw(ctx,s){
     const key = this.type==='VIP' ? 'patron_vip' : 'patron_reg';
     const ok = drawSprite(ctx, s.sprites?.[key], this.x, this.y(s), this.w, this.h);
