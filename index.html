@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bar Queen</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div class="wrap">
+    <canvas id="game" width="900" height="480"></canvas>
+  </div>
+  <div class="hud">
+    <span id="score">Score: 0</span>
+    <span id="lives">Lives: 3</span>
+    <span id="round">Round: 1</span>
+    <span id="streak">Streak: 0 (x1)</span>
+    <span id="effects"></span>
+  </div>
+  <div class="hint">↑/↓ lanes • Space serve • 1/2/3 pick cup • ESC pause • R restart</div>
+  <div id="banner" class="banner"></div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
