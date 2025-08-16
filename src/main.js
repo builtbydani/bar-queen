@@ -4,6 +4,7 @@ import { createEngine } from './core/engine.js';
 import { drawFrame } from './render/draw.js';
 import { updateHud } from './render/hud.js';
 import { beginRound } from './systems/rounds.js';
+import { loadSprites } from './render/sprites.js';
 
 import Player from './entities/Player.js';
 
@@ -12,6 +13,18 @@ const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
 const state = initState(canvas, ctx);
+// Sprite manifest (add/rename as you add files)
+const manifest = {
+  player: 'assets/images/player.svg',
+  patron_reg: 'assets/images/patron_reg.svg',
+  patron_vip: 'assets/images/patron_vip.svg',
+  drink: 'assets/images/drink.svg',
+  empty: 'assets/images/empty.svg',
+  power_speed: 'assets/images/power_speed.svg',
+  power_charm: 'assets/images/power_charm.svg',
+  power_auto: 'assets/images/power_auto.svg',
+};
+state.sprites = await loadSprites(manifest);
 state.entities.player = new Player();
 
 initInput(state);
